@@ -10,4 +10,16 @@ use Illuminate\Routing\Controller as BaseController;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+
+    public function success($msg,$rote)
+    {
+        header('Refresh:3;url='.$_SERVER['HTTP_REFERER']);
+
+    }
+
+    public function error($msg = '')
+    {
+        header('Refresh:3;url='.$_SERVER['HTTP_REFERER']);
+        echo "";
+    }
 }

@@ -17,6 +17,7 @@ class UserTable extends Migration
             $table->bigIncrements('id')->comment('主键')->autoIncrement();
             $table->string('username')->comment('用户名')->default(0);
             $table->string('password')->comment('密码')->default(0);
+            $table->string('salt')->comment('加盐')->default(0);
             $table->string('email')->comment('邮箱')->default(0);
             $table->integer('tel')->comment('手机号码')->default(0);
             $table->unsignedInteger('reg_time')->comment('注册时间')->default(0);

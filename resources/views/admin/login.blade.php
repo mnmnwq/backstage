@@ -17,21 +17,22 @@
 
     <!-- LoginForm -->
     <div class="layui-col-xs12 layui-col-sm12 layui-col-md9">
-        <div class="zyl_lofo_main" style="margin-top: 15%">
+        <div class="zyl_lofo_main" style="margin-top: 10%">
             <fieldset class="layui-elem-field layui-field-title zyl_mar_02">
                 <legend>欢迎登陆 - 后台管理平台</legend>
             </fieldset>
             <div class="layui-row layui-col-space8">
-                <form class="layui-form zyl_pad_01" action="">
+                <form class="layui-form zyl_pad_01" action="{{url('admin/do_login')}}" method="post">
+                    @csrf
                     <div class="layui-col-sm12 layui-col-md12">
                         <div class="layui-form-item">
-                            <input type="text" name="userName" lay-verify="required|userName" autocomplete="off" placeholder="账号" class="layui-input">
+                            <input type="text" name="username" lay-verify="required|userName" autocomplete="off" placeholder="账号" class="layui-input">
                             <i class="layui-icon layui-icon-username zyl_lofo_icon"></i>
                         </div>
                     </div>
                     <div class="layui-col-sm12 layui-col-md12">
                         <div class="layui-form-item">
-                            <input type="password" name="nuse" lay-verify="required|pass" autocomplete="off" placeholder="密码" class="layui-input">
+                            <input type="password" name="password" lay-verify="required|pass" autocomplete="off" placeholder="密码" class="layui-input">
                             <i class="layui-icon layui-icon-password zyl_lofo_icon"></i>
                         </div>
                     </div>
@@ -44,7 +45,7 @@
                                 </div>
                             </div>
                             <div class="layui-col-xs4 layui-col-sm4 layui-col-md4">
-                                <div class="zyl_lofo_vercode zylVerCode" onclick="zylVerCode()"></div>
+                                <div class="zyl_lofo_vercode zylVerCode" onclick="code_url()">{!! captcha_img() !!}</div>
                             </div>
                         </div>
                     </div>
@@ -66,6 +67,14 @@
 <!-- Jqarticle Js -->
 
 <script>
+    function code_url(){
+        var url = "{{captcha_src()}}";
+        $('.zyl_lofo_vercode').children().attr('src',url+Math.floor(Math.random()*10));
+
+    }
+    $(function(){
+
+    });
     layui.use(['carousel', 'form'], function(){
         var carousel = layui.carousel
             ,form = layui.form;
