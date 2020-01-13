@@ -14,16 +14,12 @@
 </head>
 <body>
 <div class="layui-container">
-    <div class="layui-col-xs12 layui-col-sm12 layui-col-md8">
-        <img src="{{asset('img/timg.jpg')}}" alt="" class="layui-col-xs12 layui-col-sm12 layui-col-md8" style="margin-top: 25%;margin-left: -10%">
-    </div>
-
 
     <!-- LoginForm -->
-    <div class="layui-col-xs12 layui-col-sm12 layui-col-md4">
-        <div class="zyl_lofo_main" style="margin-top: 45%;margin-right: -10%">
+    <div class="layui-col-xs12 layui-col-sm12 layui-col-md10">
+        <div class="zyl_lofo_main" style="margin-top: 15%">
             <fieldset class="layui-elem-field layui-field-title zyl_mar_02">
-                <legend>欢迎登陆 - 彩虹先生管理平台</legend>
+                <legend>欢迎登陆 - 后台管理平台</legend>
             </fieldset>
             <div class="layui-row layui-col-space8">
                 <form class="layui-form zyl_pad_01" action="">
