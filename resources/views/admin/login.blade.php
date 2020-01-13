@@ -16,7 +16,7 @@
 <div class="layui-container">
 
     <!-- LoginForm -->
-    <div class="layui-col-xs12 layui-col-sm12 layui-col-md10">
+    <div class="layui-col-xs12 layui-col-sm12 layui-col-md9">
         <div class="zyl_lofo_main" style="margin-top: 15%">
             <fieldset class="layui-elem-field layui-field-title zyl_mar_02">
                 <legend>欢迎登陆 - 后台管理平台</legend>
