@@ -10,16 +10,16 @@ class LoginController extends Controller
 {
     public function login()
     {
-        //return view('admin.login');
-        return view('admin.login_test');
+        return view('admin.login');
     }
 
     public function do_login(Request $request)
     {
+
         $req = $request->all();
         $ver_result = Captcha::check($req['vercode']);
         if(!$ver_result){
-            $this->error();
+            $this->success('操作成功','admin/login');
         }
 
     }
