@@ -34,7 +34,7 @@ class Controller extends BaseController
             document.getElementById('t').innerHTML = times;
         }
     }
-</script>";
+</script>";die();
     }
 
     public function error($msg = '',$route='')
@@ -60,6 +60,6 @@ class Controller extends BaseController
             document.getElementById('t').innerHTML = times;
         }
     }
-</script>";
+</script>";die();
     }
 }

@@ -16,13 +16,15 @@ Route::get('/', function () {
 });
 
 //后台
-Route::middleware(['admin.login'])->group(function () {
-    Route::prefix('admin')->group(function () {
-        Route::namespace('Admin')->group(function () {
+
+Route::prefix('admin')->group(function () {
+    Route::namespace('Admin')->group(function () {
+        Route::get('/login', 'LoginController@login'); //登陆
+        Route::post('/do_login', 'LoginController@do_login'); // 执行登陆
+        Route::middleware(['admin.login'])->group(function () {
             Route::get('/', 'IndexController@index');
-            Route::get('/login', 'LoginController@login'); //登陆
-            Route::post('/do_login', 'LoginController@do_login'); // 执行登陆
             Route::get('/role','RoleController@index'); //角色管理
+
         });
     });
 });
