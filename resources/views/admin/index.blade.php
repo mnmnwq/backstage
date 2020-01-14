@@ -1,4 +1,83 @@
-@extends('layout.admin')
-@section('title','首页')
-@section('body')
-@endsection
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>后台</title>
+    <link rel="stylesheet" href="{{asset('/layui/css/layui.css')}}">
+</head>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+    <div class="layui-header">
+        <div class="layui-logo">layui 后台布局</div>
+        <!-- 头部区域（可配合layui已有的水平导航） -->
+
+        <ul class="layui-nav layui-layout-right">
+            <li class="layui-nav-item">
+                <a href="javascript:;">
+                    <img src="http://t.cn/RCzsdCq" class="layui-nav-img">
+                    贤心
+                </a>
+                <dl class="layui-nav-child">
+                    <dd><a href="">基本资料</a></dd>
+                    {{--                    <dd><a href="">安全设置</a></dd>--}}
+                </dl>
+            </li>
+            <li class="layui-nav-item"><a href="">退了</a></li>
+        </ul>
+    </div>
+
+    <div class="layui-side layui-bg-black">
+        <div class="layui-side-scroll">
+            <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+            <ul class="layui-nav layui-nav-tree"  lay-filter="test">
+                <li class="layui-nav-item layui-nav-itemed">
+                    <a class="" href="javascript:;">系统设置</a>
+                    <dl class="layui-nav-child">
+                        <dd><a class="child-a" href="javascript:;">列表一</a></dd>
+                        <dd><a class="child-a" href="javascript:;">列表二</a></dd>
+                        <dd><a class="child-a" href="javascript:;">列表三</a></dd>
+                        <dd><a class="child-a" href="">超链接</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">设置</a>
+                    <dl class="layui-nav-child">
+                        <dd><a class="child-a" href="{{url('admin/role')}}">角色管理</a></dd>
+                        <dd><a class="child-a" href="javascript:;">列表二</a></dd>
+                        <dd><a class="child-a" href="javascript:;">超链接</a></dd>
+                    </dl>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+
+    <div class="layui-body">
+        <!-- 内容主体区域 -->
+        <iframe src="{{url('admin/role')}}" frameborder="0" id="lay-body" style="width: 100%; height:100%;"></iframe>
+    </div>
+
+    <div class="layui-footer">
+        <!-- 底部固定区域 -->
+        © layui.com - 底部固定区域
+    </div>
+</div>
+
+<script src="{{asset('/js/jquery.min.js')}}"></script>
+<script src="{{asset('/layui/layui.js')}}"></script>
+
+<script>
+    $(function(){
+        $('.child-a').click(function(){
+            $('#lay-body').prop('src',$(this).prop('href'));
+            return false;
+        });
+    });
+    layui.use('element', function(){
+        var element = layui.element;
+
+    });
+</script>
+</body>
+</html>

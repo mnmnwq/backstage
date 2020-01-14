@@ -19,8 +19,7 @@ class LoginController extends Controller
         $req = $request->all();
         $ver_result = Captcha::check($req['vercode']);
         if(!$ver_result){
-            $this->success('操作成功','admin/login');
+            $this->error('验证码错误');
         }
-
     }
 }
