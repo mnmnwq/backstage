@@ -39,4 +39,11 @@ class LoginController extends Controller
         Cache::put('token:uid:'.$user_info['id'],$token);
         return redirect('admin')->cookie('uid',$user_info['id'],24 * 30 * 60)->cookie('token',$token,24 * 30 * 60);
     }
+
+    public function logout(Request $request)
+    {
+        $uid = $request->cookie('uid');
+        Cache::forget('token:uid:'.$uid);
+        return redirect('admin/login')->cookie('uid','',24 * 30 * 60)->cookie('token','',24 * 30 * 60);
+    }
 }

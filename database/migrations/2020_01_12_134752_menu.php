@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Permission extends Migration
+class Menu extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class Permission extends Migration
      */
     public function up()
     {
-        Schema::create('permission', function (Blueprint $table) {
+        Schema::create('menu', function (Blueprint $table) {
             $table->bigIncrements('id')->comment('主键')->autoIncrement();
             $table->string('menu_name')->comment('菜单名称')->default(0);
             $table->bigInteger('pid')->comment('父级id')->default(0);
@@ -31,6 +31,6 @@ class Permission extends Migration
      */
     public function down()
     {
-        Schema::drop('permission');
+        Schema::drop('menu');
     }
 }

@@ -4,14 +4,14 @@ namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
-class RolePermission extends Model
+class Menu extends Model
 {
     /**
      * 与模型关联的表名
      *
      * @var string
      */
-    protected $table = 'role_permission';
+    protected $table = 'menu';
     /**
      * 重定义主键
      *

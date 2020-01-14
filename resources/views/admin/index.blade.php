@@ -23,7 +23,7 @@
                     {{--                    <dd><a href="">安全设置</a></dd>--}}
                 </dl>
             </li>
-            <li class="layui-nav-item"><a href="">退了</a></li>
+            <li class="layui-nav-item"><a href="{{url('admin/logout')}}">退了</a></li>
         </ul>
     </div>
 
@@ -44,7 +44,7 @@
                     <a href="javascript:;">设置</a>
                     <dl class="layui-nav-child">
                         <dd><a class="child-a" href="{{url('admin/role')}}">角色管理</a></dd>
-                        <dd><a class="child-a" href="javascript:;">列表二</a></dd>
+                        <dd><a class="child-a" href="{{url('admin/menu')}}">菜单管理</a></dd>
                         <dd><a class="child-a" href="javascript:;">超链接</a></dd>
                     </dl>
                 </li>
