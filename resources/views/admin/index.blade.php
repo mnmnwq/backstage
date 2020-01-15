@@ -55,7 +55,7 @@
 
     <div class="layui-body">
         <!-- 内容主体区域 -->
-        <iframe src="{{url('admin/role')}}" frameborder="0" id="lay-body" style="width: 100%; height:100%;"></iframe>
+        <iframe src="{{url('admin/index')}}" frameborder="0" id="lay-body" style="width: 100%; height:100%;"></iframe>
     </div>
 
     <div class="layui-footer">

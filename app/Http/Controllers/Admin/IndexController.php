@@ -11,4 +11,13 @@ class IndexController extends Controller
     {
         return view('admin.index');
     }
+
+    /**
+     * 内容主体区域
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function master()
+    {
+        return view('admin.master');
+    }
 }

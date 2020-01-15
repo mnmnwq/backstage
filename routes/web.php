@@ -24,12 +24,20 @@ Route::prefix('admin')->group(function () {
         Route::post('/do_login', 'LoginController@do_login'); // 执行登陆
         Route::middleware(['admin.login'])->group(function () {
             Route::get('/', 'IndexController@index');
+            Route::get('/index', 'IndexController@master');
+
             Route::get('/role','RoleController@index'); //角色管理
+            Route::get('add_role','RoleController@add_role'); //增加角色
+            Route::post('do_add_role','RoleController@do_add_role'); //执行增加角色
+
             Route::get('/menu','MenuController@index'); //菜单管理
             Route::get('/add_menu','MenuController@add_menu'); //增加菜单
+            Route::get('/up_menu','MenuController@up_menu'); //修改菜单
+            Route::post('/do_up_menu','MenuController@do_up_menu'); //执行修改菜单
             Route::get('/del_menu','MenuController@del_menu'); //删除菜单
             Route::post('/do_add_menu','MenuController@do_add_menu'); //执行增加菜单
             Route::post('/menu_sort','MenuController@menu_sort'); //修改菜单排序
+
         });
     });
 });

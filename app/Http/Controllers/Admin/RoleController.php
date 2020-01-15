@@ -13,11 +13,24 @@ class RoleController extends Controller
      */
     public function index()
     {
-        return view('admin.role.index');
+        $role_info = Role::all()->toArray();
+        return view('admin.role.index',['role_info'=>$role_info]);
     }
 
+    /**
+     * 增加角色
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function add_role()
     {
-        return view();
+        return view('admin.role.add');
+    }
+
+    /**
+     * 执行增加角色
+     */
+    public function do_add_role(Request $request)
+    {
+        $req = $request->all();
     }
 }
