@@ -10,11 +10,11 @@ use App\Tools\Tools;
 class MenuController extends Controller
 {
     /**
-     * 权限主页
+     * 菜单主页
      */
     public function index(Tools $tools)
     {
-        $menu_info = Menu::all()->toArray();
+        $menu_info = Menu::orderBy('sort','desc')->get()->toArray();
         $menu = $tools->cateTree($menu_info);
 
         return view('admin.menu.index',['menu'=>$menu]);
@@ -46,6 +46,35 @@ class MenuController extends Controller
             $this->success('操作成功','admin/menu');
         }else{
             $this->error('操作失败');
+        }
+    }
+
+    /**
+     * 删除菜单
+     */
+    public function del_menu(Request $request)
+    {
+        $req = $request->all();
+        $result = Menu::where(['id'=>$req['id']])->delete();
+        if($result){
+            $this->success('操作成功','admin/menu');
+        }else{
+            $this->error('操作失败');
+        }
+    }
+
+    /**
+     * 菜单排序
+     * @param Request $request
+     */
+    public function menu_sort(Request $request)
+    {
+        $req = $request->all();
+        $result = Menu::where(['id'=>$req['id']])->update(['sort'=>$req['sort']]);
+        if($result){
+            $this->ajaxReturn(['errno'=>0,'msg'=>'ok']);
+        }else{
+            $this->ajaxReturn(['errno'=>403,'msg'=>'操作失败']);
         }
     }
 }

@@ -18,6 +18,7 @@ class Menu extends Migration
             $table->string('menu_name')->comment('菜单名称')->default(0);
             $table->bigInteger('pid')->comment('父级id')->default(0);
             $table->string('menu_route')->comment('路由信息')->default(0);
+            $table->bigInteger('sort')->comment('排序')->default(0);
             $table->engine = 'InnoDB';
             $table->charset = 'utf8';
             $table->collation = 'utf8_general_ci';

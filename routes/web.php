@@ -27,7 +27,9 @@ Route::prefix('admin')->group(function () {
             Route::get('/role','RoleController@index'); //角色管理
             Route::get('/menu','MenuController@index'); //菜单管理
             Route::get('/add_menu','MenuController@add_menu'); //增加菜单
+            Route::get('/del_menu','MenuController@del_menu'); //删除菜单
             Route::post('/do_add_menu','MenuController@do_add_menu'); //执行增加菜单
+            Route::post('/menu_sort','MenuController@menu_sort'); //修改菜单排序
         });
     });
 });
