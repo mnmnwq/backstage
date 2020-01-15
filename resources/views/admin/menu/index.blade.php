@@ -24,6 +24,7 @@
             <td>{{$v['menu_route']}}</td>
             <td><input type="text" class="sort" value="{{$v['sort']}}" data-id="{{$v['id']}}" style="width: 45px;"></td>
             <td>
+                <a href="{{url('admin/up_menu')}}?id={{$v['id']}}">修改</a> |
                 <a href="{{url('admin/del_menu')}}?id={{$v['id']}}">删除</a>
             </td>
         </tr>

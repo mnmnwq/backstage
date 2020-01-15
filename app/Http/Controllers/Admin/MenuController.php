@@ -20,6 +20,28 @@ class MenuController extends Controller
         return view('admin.menu.index',['menu'=>$menu]);
     }
 
+    public function up_menu(Request $request)
+    {
+        $req = $request->all();
+        $menu_list = Menu::where(['pid'=>0])->get()->toArray();
+        $menu_info = Menu::where(['id'=>$req['id']])->first();
+        return view('admin.menu.update',['menu_info'=>$menu_info,'menu_list'=>$menu_list]);
+    }
+
+    public function do_up_menu(Request $request)
+    {
+        $req = $request->all();
+        $result = Menu::where(['id'=>$req['id']])->update([
+            'menu_name'=>$req['menu_name'],
+            'menu_route'=>$req['menu_route']
+        ]);
+        if($result){
+            $this->success('操作成功','admin/menu');
+        }else{
+            $this->error('操作失败');
+        }
+    }
+
     /**
      *
      */

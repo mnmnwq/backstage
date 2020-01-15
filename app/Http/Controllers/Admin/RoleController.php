@@ -32,5 +32,13 @@ class RoleController extends Controller
     public function do_add_role(Request $request)
     {
         $req = $request->all();
+        $result = Role::insert([
+            'role_name'=>$req['role_name']
+        ]);
+        if($result){
+            $this->success('操作成功','admin/role');
+        }else{
+            $this->error('操作失败');
+        }
     }
 }
