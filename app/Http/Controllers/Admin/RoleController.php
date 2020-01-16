@@ -18,6 +18,26 @@ class RoleController extends Controller
     }
 
     /**
+     * 修改角色
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function up_role(Request $request)
+    {
+        $req = $request->all();
+        $role_info = Role::where(['id'=>$req['id']])->first();
+return view('admin.role.update',['role_info'=>$role_info]);
+}
+
+    /**
+     * 执行修改角色
+     */
+    public function do_up_role(Request $request)
+    {
+        $req = $request->all();
+    }
+
+    /**
      * 增加角色
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */

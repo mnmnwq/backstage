@@ -29,6 +29,9 @@ Route::prefix('admin')->group(function () {
             Route::get('/role','RoleController@index'); //角色管理
             Route::get('add_role','RoleController@add_role'); //增加角色
             Route::post('do_add_role','RoleController@do_add_role'); //执行增加角色
+            Route::get('up_role','RoleController@up_role'); //修改角色
+            Route::get('do_up_role','RoleController@do_up_role'); //执行修改角色
+
 
             Route::get('/menu','MenuController@index'); //菜单管理
             Route::get('/add_menu','MenuController@add_menu'); //增加菜单
