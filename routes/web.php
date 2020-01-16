@@ -32,6 +32,14 @@ Route::prefix('admin')->group(function () {
             Route::get('up_role','RoleController@up_role'); //修改角色
             Route::get('do_up_role','RoleController@do_up_role'); //执行修改角色
 
+            Route::get('user','UserController@index'); //用户管理
+            Route::get('add_user','UserController@add_user'); //增加用户
+            Route::post('do_add_user','UserController@do_add_user'); //执行增加用户
+            Route::get('up_user','UserController@up_user'); //修改用户
+            Route::post('do_up_user','UserController@do_up_user'); //执行修改用户
+            Route::get('del_user','UserController@del_user'); //删除用户
+            Route::get('role_user','UserController@role_user'); //分配角色
+
 
             Route::get('/menu','MenuController@index'); //菜单管理
             Route::get('/add_menu','MenuController@add_menu'); //增加菜单
