@@ -31,24 +31,16 @@
         <div class="layui-side-scroll">
             <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
             <ul class="layui-nav layui-nav-tree"  lay-filter="test">
-                <li class="layui-nav-item layui-nav-itemed">
-                    <a class="" href="javascript:;">系统设置</a>
-                    <dl class="layui-nav-child">
-                        <dd><a class="child-a" href="javascript:;">列表一</a></dd>
-                        <dd><a class="child-a" href="javascript:;">列表二</a></dd>
-                        <dd><a class="child-a" href="javascript:;">列表三</a></dd>
-                        <dd><a class="child-a" href="">超链接</a></dd>
-                    </dl>
-                </li>
-                <li class="layui-nav-item">
-                    <a href="javascript:;">设置</a>
-                    <dl class="layui-nav-child">
-                        <dd><a class="child-a" href="{{url('admin/role')}}">角色管理</a></dd>
-                        <dd><a class="child-a" href="{{url('admin/menu')}}">菜单管理</a></dd>
-                        <dd><a class="child-a" href="javascript:;">超链接</a></dd>
-                    </dl>
-                </li>
-
+                @foreach($menu as $k=>$v)
+                    <li class="layui-nav-item nav_bar">
+                        <a href="javascript:;">{{$v['menu_name']}}</a>
+                        <dl class="layui-nav-child">
+                            @foreach($v['child'] as $key=>$vo)
+                            <dd><a class="child-a" href="{{$vo['menu_route']}}">{{$vo['menu_name']}}</a></dd>
+                            @endforeach
+                        </dl>
+                    </li>
+                @endforeach
             </ul>
         </div>
     </div>
@@ -69,6 +61,7 @@
 
 <script>
     $(function(){
+        $('.nav_bar:first').addClass('layui-nav-itemed');
         $('.child-a').click(function(){
             $('#lay-body').prop('src',$(this).prop('href'));
             return false;
