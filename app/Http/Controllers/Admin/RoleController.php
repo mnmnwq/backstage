@@ -3,8 +3,12 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Model\Menu;
+use App\Model\RoleMenu;
+use App\Model\UserRole;
 use Illuminate\Http\Request;
 use App\Model\Role;
+use Illuminate\Support\Facades\DB;
 
 class RoleController extends Controller
 {
@@ -58,6 +62,33 @@ return view('admin.role.update',['role_info'=>$role_info]);
         if($result){
             $this->success('操作成功','admin/role');
         }else{
+            $this->error('操作失败');
+        }
+    }
+
+    /**
+     * 删除角色
+     * @param Request $request
+     */
+    public function del_role(Request $request)
+    {
+        $req = $request->all();
+        DB::beginTransaction();
+        $result1 = Role::where(['id'=>$req['id']])->delete();
+        $result2 = $result3 = true;
+        $menu_info = RoleMenu::where(['role_id'=>$req['id']])->get();
+        $user_info = UserRole::where(['role_id'=>$req['id']])->get();
+        if($menu_info){
+            $result2 = RoleMenu::where(['role_id'=>$req['id']])->delete();
+        }
+        if($user_info){
+            $result3 = UserRole::where(['role_id'=>$req['id']])->delete();
+        }
+        if($result1 && $result2 && $result3){
+            DB::commit();
+            $this->success('操作成功','admin/role');
+        }else{
+            DB::rollBack();
             $this->error('操作失败');
         }
     }

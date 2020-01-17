@@ -4,7 +4,9 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Model\User;
+use App\Model\UserRole;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -86,13 +88,25 @@ class UserController extends Controller
         }
     }
 
+    /**
+     * 删除用户
+     * @param Request $request
+     */
     public function del_user(Request $request)
     {
         $req = $request->all();
+        DB::beginTransaction();
         $result = User::where(['id'=>$req['id']])->delete();
-        if($result){
+        $user_role = UserRole::where(['uid'=>$req['id']])->get();
+        $role_result = true;
+        if($user_role){
+            $role_result = UserRole::where(['uid'=>$req['id']])->delete();
+        }
+        if($result && $role_result){
+            DB::commit();
             $this->success('操作成功','admin/user');
         }else{
+            DB::rollBack();
             $this->error('操作失败');
         }
     }
