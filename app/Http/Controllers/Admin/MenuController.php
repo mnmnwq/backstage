@@ -77,7 +77,20 @@ class MenuController extends Controller
     public function del_menu(Request $request)
     {
         $req = $request->all();
-        $result = Menu::where(['id'=>$req['id']])->delete();
+        $pid = Menu::where(['id'=>$req['id']])->value('pid');
+        if($pid != 0){
+            $result = Menu::where(['id'=>$req['id']])->delete();
+        }elseif($pid == 0){
+            $pid_info = Menu::where(['pid'=>$req['id']])->get()->toArray();
+            if(empty($pid_info)){
+                $result = Menu::where(['id'=>$req['id']])->delete();
+            }else{
+                $result = false;
+            }
+        }else{
+            $result =false;
+        }
+
         if($result){
             $this->success('操作成功','admin/menu');
         }else{

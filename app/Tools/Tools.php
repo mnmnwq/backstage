@@ -1,6 +1,10 @@
 <?php
 namespace App\Tools;
+use App\Model\Menu;
+use App\Model\RoleMenu;
+use App\Model\UserRole;
 class Tools {
+
     /**
      * 无限极分类 静态变量
      * @param $data 数据
