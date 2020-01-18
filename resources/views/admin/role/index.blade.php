@@ -17,7 +17,7 @@
         <tr>
             <td>{{$v['role_name']}}</td>
             <td>
-                <a href="{{url('admin/role_permission')}}?id={{$v['id']}}">分配权限</a>
+                <a href="{{url('admin/role_power')}}?id={{$v['id']}}">分配权限</a>
                 <a href="{{url('admin/del_role')}}?id={{$v['id']}}">删除</a>
             </td>
         </tr>

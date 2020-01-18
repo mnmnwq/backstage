@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Tools\Tools;
 use App\Model\Menu;
 use App\Model\RoleMenu;
 use App\Model\UserRole;
@@ -19,6 +20,37 @@ class RoleController extends Controller
     {
         $role_info = Role::all()->toArray();
         return view('admin.role.index',['role_info'=>$role_info]);
+    }
+
+    public function role_power(Tools $tools,Request $request)
+    {
+        $req = $request->all();
+        $menu_info = Menu::orderBy('sort','desc')->get()->toArray();
+        $menu = $tools->cateTree($menu_info);
+        return view('admin.role.role_power',['menu'=>$menu,'role_id'=>$req['id']]);
+    }
+
+    public function do_role_power(Request $request)
+    {
+        $req = $request->all();
+        $insert = true;
+        DB::beginTransaction();
+        foreach($req['sel'] as $v){
+            $result = RoleMenu::insert([
+                'role_id'=>$req['role_id'],
+                'menu_id'=>$v
+            ]);
+            if(!$result){
+                $insert = false;
+            }
+        }
+        if($insert){
+            DB::commit();
+            $this->success('操作成功','admin/role');
+        }else{
+            DB::rollBack();
+            $this->error('操作失败');
+        }
     }
 
     /**

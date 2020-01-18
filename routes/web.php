@@ -32,6 +32,8 @@ Route::prefix('admin')->group(function () {
             Route::get('up_role','RoleController@up_role'); //修改角色
             Route::get('do_up_role','RoleController@do_up_role'); //执行修改角色
             Route::get('del_role','RoleController@del_role'); //删除角色
+            Route::get('role_power','RoleController@role_power'); //分配权限
+            Route::post('do_role_power','RoleController@do_role_power'); //执行分配权限
 
             Route::get('user','UserController@index'); //用户管理
             Route::get('add_user','UserController@add_user'); //增加用户
