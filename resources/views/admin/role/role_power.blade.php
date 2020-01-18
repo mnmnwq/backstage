@@ -1,6 +1,6 @@
 @extends('layout.admin')
 @section('body')
-{{--    <button type="button" class="layui-btn add_btn">增加菜单</button>--}}
+    <button type="button" class="layui-btn back_btn">返回</button>
 <form action="{{url('admin/do_role_power')}}" method="post">
     <input type="hidden" name="role_id" value="{{$role_id}}">
     @csrf
@@ -50,8 +50,8 @@
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
-            $('.add_btn').click(function(){
-                window.location.href = "{{url('admin/add_menu')}}";
+            $('.back_btn').click(function(){
+                window.location.href = "{{url('admin/role')}}";
             });
             layui.use(['form', 'layedit', 'laydate'], function(){
                 var form = layui.form
