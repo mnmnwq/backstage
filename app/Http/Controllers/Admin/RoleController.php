@@ -40,6 +40,7 @@ class RoleController extends Controller
         $req = $request->all();
         $insert = true;
         DB::beginTransaction();
+        $del_result = RoleMenu::where(['role_id'=>$req['role_id']])->delete();
         foreach($req['sel'] as $v){
             $result = RoleMenu::insert([
                 'role_id'=>$req['role_id'],
@@ -49,7 +50,7 @@ class RoleController extends Controller
                 $insert = false;
             }
         }
-        if($insert){
+        if($del_result && $insert){
             DB::commit();
             $this->success('操作成功','admin/role');
         }else{
