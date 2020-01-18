@@ -76,9 +76,9 @@ return view('admin.role.update',['role_info'=>$role_info]);
         DB::beginTransaction();
         $result1 = Role::where(['id'=>$req['id']])->delete();
         $result2 = $result3 = true;
-        $menu_info = RoleMenu::where(['role_id'=>$req['id']])->get();
-        $user_info = UserRole::where(['role_id'=>$req['id']])->get();
-        if($menu_info){
+        $menu_info = RoleMenu::where(['role_id'=>$req['id']])->get()->toArray();
+        $user_info = UserRole::where(['role_id'=>$req['id']])->get()->toArray();
+        if(!empty($menu_info)){
             $result2 = RoleMenu::where(['role_id'=>$req['id']])->delete();
         }
         if($user_info){

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Model\Role;
 use App\Model\User;
 use App\Model\UserRole;
 use Illuminate\Http\Request;
@@ -17,6 +18,29 @@ class UserController extends Controller
     {
         $user_info = User::get()->toArray();
         return view('admin.user.index',['user_info'=>$user_info]);
+    }
+
+    public function role_user(Request $request)
+    {
+        $req = $request->all();
+        $user_info = User::where(['id'=>$req['id']])->first();
+        $user_role = UserRole::where(['uid'=>$req['id']])->first();
+        $role_info = Role::get()->toArray();
+        return view('admin.user.role_user',['user_info'=>$user_info,'role_info'=>$role_info,'user_role'=>$user_role]);
+    }
+
+    public function do_role_user(Request $request)
+    {
+        $req = $request->all();
+        $result = UserRole::insert([
+            'role_id'=>$req['role_id'],
+            'uid'=>$req['uid']
+        ]);
+        if($result){
+            $this->success('操作成功','admin/user');
+        }else{
+            $this->error('操作失败');
+        }
     }
 
     public function add_user()
@@ -97,9 +121,9 @@ class UserController extends Controller
         $req = $request->all();
         DB::beginTransaction();
         $result = User::where(['id'=>$req['id']])->delete();
-        $user_role = UserRole::where(['uid'=>$req['id']])->get();
+        $user_role = UserRole::where(['uid'=>$req['id']])->get()->toArray();
         $role_result = true;
-        if($user_role){
+        if(!empty($user_role)){
             $role_result = UserRole::where(['uid'=>$req['id']])->delete();
         }
         if($result && $role_result){

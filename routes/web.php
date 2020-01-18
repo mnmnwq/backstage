@@ -40,6 +40,7 @@ Route::prefix('admin')->group(function () {
             Route::post('do_up_user','UserController@do_up_user'); //执行修改用户
             Route::get('del_user','UserController@del_user'); //删除用户
             Route::get('role_user','UserController@role_user'); //分配角色
+            Route::post('do_role_user','UserController@do_role_user'); //执行分配角色
 
 
             Route::get('/menu','MenuController@index'); //菜单管理

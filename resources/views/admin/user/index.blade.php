@@ -24,7 +24,7 @@
                     @if($v['id'] != 1)
                     <a href="{{url('admin/up_user')}}?id={{$v['id']}}">修改</a> |
                     <a href="{{url('admin/del_user')}}?id={{$v['id']}}">删除</a> |
-                    <a href="{{url('admin/user_role')}}?id={{$v['id']}}">分配角色</a>
+                    <a href="{{url('admin/role_user')}}?id={{$v['id']}}">分配角色</a>
                     @else
                         无
                     @endif
