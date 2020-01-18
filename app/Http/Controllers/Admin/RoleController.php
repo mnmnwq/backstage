@@ -27,7 +27,12 @@ class RoleController extends Controller
         $req = $request->all();
         $menu_info = Menu::orderBy('sort','desc')->get()->toArray();
         $menu = $tools->cateTree($menu_info);
-        return view('admin.role.role_power',['menu'=>$menu,'role_id'=>$req['id']]);
+        $role_menu = RoleMenu::where(['role_id'=>$req['id']])->get()->toArray();
+        $menu_arr = [];
+        foreach($role_menu as $v){
+            $menu_arr[] = $v['menu_id'];
+        }
+        return view('admin.role.role_power',['menu'=>$menu,'menu_arr'=>$menu_arr,'role_id'=>$req['id']]);
     }
 
     public function do_role_power(Request $request)

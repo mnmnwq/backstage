@@ -29,7 +29,7 @@
         <tbody>
         @foreach($menu as $v)
             <tr>
-                <td>@if($v['level'] != 0) <input type="checkbox" name="sel[]" value="{{$v['id']}}"> @endif</td>
+                <td>@if($v['level'] != 0) <input type="checkbox" name="sel[]" value="{{$v['id']}}" @if(in_array($v['id'],$menu_arr)) checked @endif > @endif</td>
                 <td>{!! str_repeat('&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;',$v['level']).'|-' !!}</td>
                 <td>{{$v['menu_name']}}</td>
                 <td>{{$v['menu_route']}}</td>
